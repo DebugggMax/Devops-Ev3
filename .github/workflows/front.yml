@@ -49,8 +49,8 @@ jobs:
     # 6. Despliegue en Kubernetes (Deploy)
     - name: Desplegar en EKS
       run: |
-        kubectl apply -f k8s/frontend-deployment.yaml
-        kubectl apply -f k8s/frontend-service.yaml
+        kubectl apply -f k8s/frontend-deployment.yml
+        kubectl apply -f k8s/frontend-service.yml
         
         # Opcional: Forzar el reinicio para asegurar que tome la última imagen
         kubectl rollout restart deployment frontend-despacho
