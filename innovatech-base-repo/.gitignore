@@ -2,3 +2,5 @@
 .mvn/
 # files
 .DS_Store
+aws
+.env

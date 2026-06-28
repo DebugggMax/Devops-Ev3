@@ -117,7 +117,7 @@ variable "node_max_size" {
 variable "ecr_repo_names" {
   description = "Names of ECR repositories to create for the Tienda application"
   type        = list(string)
-  default     = ["tienda-frontend", "tienda-backend", "tienda-db"]
+  default     = ["tienda-frontend", "tienda-ventas", "tienda-despachos", "tienda-db"]
 }
 
 variable "common_tags" {

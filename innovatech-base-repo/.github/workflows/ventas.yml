@@ -35,7 +35,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         # IMPORTANTE: Este nombre debe coincidir con el repo que creó Terraform
-        ECR_REPOSITORY: back-ventas 
+        ECR_REPOSITORY: tienda-ventas 
         IMAGE_TAG: latest
       run: |
         cd back-ventas-springboot
@@ -44,7 +44,7 @@ jobs:
 
     # 5. Conexión al clúster de Kubernetes
     - name: Actualizar Kubeconfig
-      run: aws eks update-kubeconfig --region us-east-1 --name nombre-de-tu-cluster
+      run: aws eks update-kubeconfig --region us-east-1 --name tienda-eks
 
     # 6. Despliegue en Kubernetes (Deploy)
     - name: Desplegar en EKS
