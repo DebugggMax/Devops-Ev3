@@ -15,7 +15,7 @@ spec:
       containers:
       - name: mysql
         # Aquí luego pondremos la URL de tu imagen de ECR de la BD
-        image: 956050146632.dkr.ecr.us-east-1.amazonaws.com/bd-innovatech:latest 
+        image: 956050146632.dkr.ecr.us-east-1.amazonaws.com/tienda-db:latest 
         ports:
         - containerPort: 3306
         env:
