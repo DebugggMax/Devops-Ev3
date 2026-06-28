@@ -19,7 +19,7 @@ function Navbar() {
             href="#"
             className="block font-bold py-2 px-3 hover:bg-teal-700 rounded"
           >
-            Productos
+            Productoss
           </a>
         </li>
         <li>
