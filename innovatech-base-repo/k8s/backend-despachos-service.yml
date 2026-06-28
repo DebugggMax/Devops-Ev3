@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-despachos-svc
+spec:
+  selector:
+    app: backend-despachos
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081 # El puerto de tu contenedor Spring Boot

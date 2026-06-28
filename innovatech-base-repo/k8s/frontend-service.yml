@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-despacho-svc
+spec:
+  # Esto es vital para que AWS te dé una URL pública
+  type: LoadBalancer 
+  selector:
+    app: frontend-despacho
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

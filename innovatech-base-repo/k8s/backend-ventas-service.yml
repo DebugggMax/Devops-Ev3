@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-ventas-svc
+spec:
+  selector:
+    app: backend-ventas
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8082 # El puerto de tu contenedor Spring Boot

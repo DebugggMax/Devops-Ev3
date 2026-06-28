@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-despacho
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-despacho
+  template:
+    metadata:
+      labels:
+        app: frontend-despacho
+    spec:
+      containers:
+      - name: frontend-despacho
+        # Recuerda cambiar esto por la URL real de tu repositorio ECR en AWS
+        image: tu-cuenta.dkr.ecr.us-east-1.amazonaws.com/front-despacho:latest
+        ports:
+        - containerPort: 80 # El puerto de Nginx
