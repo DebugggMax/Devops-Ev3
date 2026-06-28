@@ -1,0 +1,7 @@
+FROM mysql:8.0
+
+# Copia el script inicial a la carpeta de auto-ejecución de MySQL
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Exponer el puerto estándar de MySQL
+EXPOSE 3306
