@@ -15,6 +15,6 @@ spec:
       containers:
       - name: frontend-despacho
         # Recuerda cambiar esto por la URL real de tu repositorio ECR en AWS
-        image: 956050146632.dkr.ecr.us-east-1.amazonaws.com/front-despacho:latest
+        image: 956050146632.dkr.ecr.us-east-1.amazonaws.com/frontend-despacho:latest
         ports:
         - containerPort: 80 # El puerto de Nginx
