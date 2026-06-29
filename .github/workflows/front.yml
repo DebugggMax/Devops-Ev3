@@ -6,7 +6,7 @@ on:
     branches: [ "deploy" ]
     paths:
       - 'front-despacho/**'
-      - 'k8s/frontend-*.yaml'
+      - 'k8s/frontend-*.yml'  # Cambiado a .yml para que coincida con tus archivos reales
 
 jobs:
   build-push-deploy:
@@ -30,16 +30,18 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
-    # 4. Construir y subir la imagen (Build & Push)
+    # 4. Construir y subir la imagen (Build & Push) con inyección de Secret
     - name: Build, tag, y push de la imagen a ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        # IMPORTANTE: Este nombre debe coincidir con el repo que creó Terraform
         ECR_REPOSITORY: tienda-frontend
         IMAGE_TAG: latest
       run: |
         cd front-despacho
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        # MODIFICACIÓN AQUÍ: Pasamos la URL secreta del Ingress en el momento del build
+        docker build \
+          --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
     # 5. Conexión al clúster de Kubernetes
@@ -52,5 +54,5 @@ jobs:
         kubectl apply -f k8s/frontend-deployment.yml
         kubectl apply -f k8s/frontend-service.yml
         
-        # Opcional: Forzar el reinicio para asegurar que tome la última imagen
+        # Forzar el reinicio para asegurar que tome la última imagen con la nueva URL
         kubectl rollout restart deployment frontend-despacho
