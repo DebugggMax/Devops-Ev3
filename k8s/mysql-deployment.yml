@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        # Aquí luego pondremos la URL de tu imagen de ECR de la BD
-        image: 956050146632.dkr.ecr.us-east-1.amazonaws.com/tienda-db:latest 
+        image: mysql:8.0  # 👈 Al usar la oficial de Docker Hub, evitamos el ErrImagePull de ECR
         ports:
         - containerPort: 3306
         env:
@@ -24,3 +23,10 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: password
+        volumeMounts:
+        - name: mysql-init-volume
+          mountPath: /docker-entrypoint-initdb.d # 👈 Carpeta interna de MySQL para auto-ejecutar scripts
+      volumes:
+      - name: mysql-init-volume
+        configMap:
+          name: mysql-init-script # 👈 Llamamos al ConfigMap del Paso 1

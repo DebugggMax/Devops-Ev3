@@ -23,7 +23,7 @@ spec:
         - name: DB_PORT
           value: "3306"
         - name: DB_NAME
-          value: "innovatech_db"
+          value: "tienda_db"
         - name: DB_USERNAME
           value: "root"
         - name: DB_PASSWORD
@@ -31,3 +31,5 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: password
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://$(DB_ENDPOINT):$(DB_PORT)/$(DB_NAME)?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
