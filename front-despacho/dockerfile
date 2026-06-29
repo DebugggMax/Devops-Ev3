@@ -4,7 +4,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ENV VITE_API_URL=https://qic534o8o0.execute-api.us-east-1.amazonaws.com
+ENV VITE_URL_VENTAS=http://a8f4f55528aac49809e673e0d9de7923-928377017.us-east-1.elb.amazonaws.com
+ENV VITE_URL_DESPACHOS=http://a81f22891aab04484aa1f3fec124e769-1222862391.us-east-1.elb.amazonaws.com
 RUN npm run build
 
 # Etapa 2: Servidor Nginx para exponer la app
