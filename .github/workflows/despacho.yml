@@ -6,7 +6,7 @@ on:
     branches: [ "deploy" ]
     paths:
       - 'back-despachos-springboot/**'
-      - 'k8s/backend-despachos-*.yaml'
+      - 'k8s/backend-despachos-*.yml'
 
 jobs:
   build-push-deploy:

@@ -17,6 +17,13 @@ spec:
         image: 956050146632.dkr.ecr.us-east-1.amazonaws.com/tienda-ventas:latest
         ports:
         - containerPort: 8082
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+          limits:
+            cpu: "1000m"
+            memory: "1024Mi"  # Subimos el límite de memoria a 1GB completo para que Java no explote al arrancar
         env:
         - name: DB_ENDPOINT
           value: "mysql-svc"  # Apunta al nombre del Service de arriba

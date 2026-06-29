@@ -6,7 +6,7 @@ on:
     branches: [ "deploy" ]
     paths:
       - 'back-ventas-springboot/**'
-      - 'k8s/backend-ventas-*.yaml'
+      - 'k8s/backend-ventas-*.yml'
 
 jobs:
   build-push-deploy:
