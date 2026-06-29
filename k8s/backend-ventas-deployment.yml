@@ -19,11 +19,11 @@ spec:
         - containerPort: 8082
         resources:
           requests:
-            cpu: "500m"
-            memory: "512Mi"
+            cpu: "200m"       # Bajamos drásticamente a 200m
+            memory: "350Mi"
           limits:
-            cpu: "1000m"
-            memory: "1024Mi"  # Subimos el límite de memoria a 1GB completo para que Java no explote al arrancar
+            cpu: "800m"
+            memory: "512Mi"
         env:
         - name: DB_ENDPOINT
           value: "mysql-svc"  # Apunta al nombre del Service de arriba
