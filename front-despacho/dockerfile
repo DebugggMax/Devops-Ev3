@@ -1,0 +1,17 @@
+# Etapa 1: Construcción con Node
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+RUN npm run build
+
+# Etapa 2: Servidor Nginx para exponer la app
+FROM nginx:alpine
+# Vite por defecto compila en la carpeta 'dist'
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
